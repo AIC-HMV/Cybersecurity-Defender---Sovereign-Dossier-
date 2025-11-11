@@ -52,3 +52,14 @@ Thumbs.db
 # CEA Defender specific
 /run/pqc/*.key
 /var/log/cea_*.log
+
+# Music production generated files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+# Sovereign Trace Engine
+.sovereign-seal
+node_modules/
+package-lock.json

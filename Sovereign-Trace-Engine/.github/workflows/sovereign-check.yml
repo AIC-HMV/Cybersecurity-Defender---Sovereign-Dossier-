@@ -1,0 +1,40 @@
+name: Sovereign Trace Check
+on: [pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Verify Commit Signature
+        run: |
+          echo "🛡️ Verifying Sovereign Trace Protocol..."
+          
+          # Check for Signed-off-by in all commits
+          commits=$(git log origin/${{ github.base_ref }}..${{ github.sha }} --pretty=%H)
+          
+          failed=0
+          for commit in $commits; do
+            if ! git log -1 --pretty=%B $commit | grep -q "Signed-off-by:"; then
+              echo "❌ Missing Signed-off-by line in commit: $commit"
+              git log -1 --oneline $commit
+              failed=1
+            else
+              echo "✅ Verified commit: $(git log -1 --oneline $commit)"
+            fi
+          done
+          
+          if [ $failed -eq 1 ]; then
+            echo ""
+            echo "❌ Sovereign Verification FAILED"
+            echo "All commits must include 'Signed-off-by' line."
+            echo "Use: git commit -s -m 'Your message'"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ Sovereign Verification Passed"
+          echo "All commits properly signed."
