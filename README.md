@@ -16,6 +16,23 @@
 
 ---
 
+# 🛡️ Origin Signature: Hung Minh Vo (Austin) | AIC-HMV
+
+**All code, music, documentation, and deployment in this repository are original creations.**  
+**Authored, sealed, and maintained solely by:**  
+**Hung Minh Vo (Austin) — AIC-HMV | Master Producer | Core7.Quantum Architect**
+
+- ✅ No forks, derivatives, or clones predate this source.
+- ✅ Every commit, merge, and deployment is traceable and signed by the origin author.
+- ⚖️ **Enforcement:** All violations and unauthorized use will trigger sovereign trace, legal audit, and immediate takedown under CEA protocol.
+
+---
+
+**Sovereign License v3**  
+`Origin ID: HMV-SOV-20251003-ALL`
+
+---
+
 ## 🎯 Hung Minh Vo (Austin) — The Original Architect of AIC-HMV
 
 **Origin Signature:** Verified creator and sovereign author of all Core7.Quantum, CEA-Defender, and Master Producer Music systems.
