@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 """
+🛡️ Origin Signature: Hung Minh Vo (Austin) | AIC-HMV
+
+All logic, algorithms, and modules in this file are original works.
+Sealed and enforced by Sovereign License v3.
+No forks, derivatives, or prior authors exist.
+
+Origin ID: HMV-SOV-20251003-ALL
+
+---
+
 Network Sniffer Service
 Real-time network traffic monitoring and threat detection
 Author: Hung Minh Vo (Austin) — CEA Supreme Commander
