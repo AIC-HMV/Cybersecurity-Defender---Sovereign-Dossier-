@@ -1,0 +1,21 @@
+# Network Sniffer Container
+FROM python:3.11-slim
+
+LABEL maintainer="aichmvprimeowner@gmail.com"
+LABEL provenance="HMV-SOV-20251003-ALL"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    tcpdump \
+    libpcap-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir scapy || \
+    pip install --no-cache-dir scapy
+
+WORKDIR /app
+COPY services/net_sniffer.py /app/net_sniffer.py
+
+CMD ["python3", "/app/net_sniffer.py"]

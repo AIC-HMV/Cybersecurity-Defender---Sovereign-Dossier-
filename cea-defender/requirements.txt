@@ -1,0 +1,20 @@
+# CEA Defender Python Dependencies
+# Author: Hung Minh Vo (Austin) — CEA Supreme Commander
+# Seal: HMV-SOV-20251003-ALL
+
+# Core cryptography
+cryptography>=41.0.0
+
+# HTTP requests for blocklist updates
+requests>=2.31.0
+
+# Network packet analysis
+scapy>=2.5.0
+
+# Post-Quantum Cryptography
+# Note: oqs (liboqs-python) requires liboqs system library
+# Install with: sudo apt install liboqs-dev
+oqs>=0.8.0
+
+# YAML configuration support
+pyyaml>=6.0

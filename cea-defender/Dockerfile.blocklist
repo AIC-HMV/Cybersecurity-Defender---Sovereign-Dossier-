@@ -1,0 +1,21 @@
+# Blocklist Updater Container
+FROM python:3.11-slim
+
+LABEL maintainer="aichmvprimeowner@gmail.com"
+LABEL provenance="HMV-SOV-20251003-ALL"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    ipset \
+    iptables \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt || \
+    pip install --no-cache-dir requests cryptography
+
+WORKDIR /app
+COPY services/blocklist_updater.py /app/blocklist_updater.py
+
+CMD ["python3", "/app/blocklist_updater.py"]

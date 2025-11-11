@@ -1,0 +1,13 @@
+# CEA Defender Revocation List
+# Author: Hung Minh Vo (Austin) — CEA Supreme Commander
+# Seal: HMV-SOV-20251003-ALL
+# Format: event_id | timestamp | reason | signature
+
+# This file contains revoked trace entries, keys, or artifacts
+# Each entry must include the original event_id, revocation timestamp, reason, and signature
+
+# Example:
+# trace-20251001-0123 | 2025-10-02T10:00:00Z | key-compromise | ed25519:abc123...
+# trace-20251002-0456 | 2025-10-03T15:30:00Z | operational-error | ed25519:def456...
+
+# No revocations at this time

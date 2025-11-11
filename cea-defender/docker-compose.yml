@@ -1,0 +1,60 @@
+# Docker Compose Configuration for CEA Defender
+# Author: Hung Minh Vo (Austin) — CEA Supreme Commander
+# Seal: HMV-SOV-20251003-ALL
+
+version: '3.8'
+
+services:
+  pqc-provider:
+    build:
+      context: ./pqc-provider
+      dockerfile: Dockerfile
+    container_name: cea-pqc-provider
+    restart: unless-stopped
+    volumes:
+      - /run/pqc:/run/pqc
+    networks:
+      - cea-network
+    labels:
+      - "com.cea.service=pqc-provider"
+      - "com.cea.owner=Hung Minh Vo"
+      - "com.cea.provenance=HMV-SOV-20251003-ALL"
+
+  blocklist-updater:
+    build:
+      context: .
+      dockerfile: Dockerfile.blocklist
+    container_name: cea-blocklist-updater
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
+    volumes:
+      - ./services:/app/services:ro
+    labels:
+      - "com.cea.service=blocklist-updater"
+      - "com.cea.owner=Hung Minh Vo"
+      - "com.cea.provenance=HMV-SOV-20251003-ALL"
+
+  net-sniffer:
+    build:
+      context: .
+      dockerfile: Dockerfile.sniffer
+    container_name: cea-net-sniffer
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: host
+    volumes:
+      - ./services:/app/services:ro
+      - /var/log:/var/log
+    labels:
+      - "com.cea.service=net-sniffer"
+      - "com.cea.owner=Hung Minh Vo"
+      - "com.cea.provenance=HMV-SOV-20251003-ALL"
+
+networks:
+  cea-network:
+    driver: bridge
+    name: cea-network

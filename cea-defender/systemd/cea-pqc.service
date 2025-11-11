@@ -1,0 +1,35 @@
+# CEA PQC Key Generation SystemD Service
+# Author: Hung Minh Vo (Austin) — CEA Supreme Commander
+# Seal: HMV-SOV-20251003-ALL
+
+[Unit]
+Description=CEA Post-Quantum Cryptography Key Generation Service
+Documentation=https://github.com/AIC-HMV/Cybersecurity-Defender---Sovereign-Dossier-
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/cea/services
+ExecStartPre=/bin/mkdir -p /run/pqc
+ExecStartPre=/bin/chmod 755 /run/pqc
+ExecStart=/usr/bin/python3 /opt/cea/services/pqc_keygen.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+PrivateTmp=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/run/pqc
+
+# Resource limits
+LimitNOFILE=4096
+LimitNPROC=128
+
+[Install]
+WantedBy=multi-user.target
