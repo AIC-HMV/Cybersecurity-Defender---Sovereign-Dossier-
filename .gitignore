@@ -53,6 +53,11 @@ Thumbs.db
 /run/pqc/*.key
 /var/log/cea_*.log
 
+# Real-time audit map
+.env
+*.mmdb
+*.ots
+
 # Music production generated files
 *.pdf
 *.png
