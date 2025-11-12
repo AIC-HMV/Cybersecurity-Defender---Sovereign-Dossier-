@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "ABCDE12345.com.core7.CEAhung",
+        "paths": ["/launch/*", "/badge/*", "/telemetry/*"]
+      }
+    ]
+  }
+}

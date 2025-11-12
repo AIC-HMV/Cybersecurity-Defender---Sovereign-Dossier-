@@ -1,0 +1,46 @@
+{
+  "title": "CEAhung Sentinel Tool",
+  "description": "Unified Core7.Quantum LTI capsule for deep-linking and telemetry tracing.",
+  "oidc_initiation_url": "https://ceasentinel.com/oidc/login",
+  "target_link_uri": "https://ceasentinel.com/launch",
+  "scopes": [
+    "https://purl.imsglobal.org/spec/lti-ags/scope/score",
+    "https://purl.imsglobal.org/spec/lti-ags/scope/result.readonly"
+  ],
+  "extensions": [
+    {
+      "platform": "canvas.instructure.com",
+      "domain": "ceasentinel.com",
+      "privacy_level": "public",
+      "tool_id": "ceahung",
+      "settings": {
+        "target_link_uri": "https://ceasentinel.com/launch",
+        "custom_fields": {
+          "canvas_user_id": "$Canvas.user.id",
+          "canvas_course_id": "$Canvas.course.id",
+          "cea_badge": "CEAhung"
+        },
+        "placements": [
+          {
+            "placement": "course_navigation",
+            "message_type": "LtiDeepLinkingRequest",
+            "target_link_uri": "https://ceasentinel.com/launch",
+            "icon_url": "https://ceasentinel.com/assets/cea-badge.png",
+            "text": "CEAhung Sentinel"
+          }
+        ]
+      }
+    }
+  ],
+  "public_jwk_url": "https://ceasentinel.com/.well-known/jwks.json",
+  "custom_parameters": {},
+  "claim_messages": {
+    "LtiDeepLinkingResponse": {
+      "type": "ltiResourceLink",
+      "url": "https://ceasentinel.com/launch",
+      "presentation": {
+        "documentTarget": "iframe"
+      }
+    }
+  }
+}
