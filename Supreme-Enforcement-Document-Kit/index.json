@@ -1,0 +1,286 @@
+{
+  "metadata": {
+    "kit_name": "Supreme Enforcement Document Kit",
+    "version": "1.0.0",
+    "author": "Hung Minh Vo (Austin)",
+    "seal_id": "HMV-SOV-20251003-ALL",
+    "created": "2025-11-12T00:35:00Z",
+    "jurisdiction": "California, United States",
+    "license": "AIC-HMV Sovereign License v3"
+  },
+  "documents": [
+    {
+      "title": "CEA Sovereign License and Conduct v3",
+      "file_name": "CEA_Sovereign_License_and_Conduct_v3.pdf",
+      "path": "legal/CEA_Sovereign_License_and_Conduct_v3.pdf",
+      "description": "Current version of sovereign license framework with conduct guidelines",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "CEA Sovereign License and Conduct FINAL",
+      "file_name": "CEA_Sovereign_License_and_Conduct_FINAL.pdf",
+      "path": "legal/CEA_Sovereign_License_and_Conduct_FINAL.pdf",
+      "description": "Final ratified version of sovereign license framework",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "ratified",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Law Enforcement Military License REAL FINAL",
+      "file_name": "HungMinhVo_LawEnforcement_MilitaryLicense_REAL_FINAL.pdf",
+      "path": "legal/HungMinhVo_LawEnforcement_MilitaryLicense_REAL_FINAL.pdf",
+      "description": "Law enforcement and military authorization documentation",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States; Federal",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Hung Minh Vo License California US Final",
+      "file_name": "HungMinhVo_License_California_US_Final.pdf",
+      "path": "legal/HungMinhVo_License_California_US_Final.pdf",
+      "description": "California jurisdiction license documentation",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Sovereign Declaration HMV Final",
+      "file_name": "Sovereign_Declaration_HMV_Final.pdf",
+      "path": "legal/Sovereign_Declaration_HMV_Final.pdf",
+      "description": "Official sovereign declaration document",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Sovereign Declaration HMV Extended ASCII",
+      "file_name": "Sovereign_Declaration_HMV_Extended_ASCII.pdf",
+      "path": "legal/Sovereign_Declaration_HMV_Extended_ASCII.pdf",
+      "description": "Extended ASCII version for maximum compatibility",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Sovereign Master Document",
+      "file_name": "Sovereign_Master_Document.pdf",
+      "path": "legal/Sovereign_Master_Document.pdf",
+      "description": "Comprehensive master document compilation",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Sovereign Master Document with Emblems",
+      "file_name": "sovereign_master_document_with_emblems.html",
+      "path": "legal/sovereign_master_document_with_emblems.html",
+      "description": "Web-viewable master document with embedded emblems",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Sovereign Master Document Single Page",
+      "file_name": "Sovereign_Master_Document_Single_Page.pdf",
+      "path": "legal/Sovereign_Master_Document_Single_Page.pdf",
+      "description": "Single-page summary version of master document",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "California State License",
+      "file_name": "California_State_License.txt",
+      "path": "legal/California_State_License.txt",
+      "description": "Citizenship status update and state licensing information",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "legal",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Digital Identity Core",
+      "file_name": "Digital_Identity_Core.json",
+      "path": "legal/Digital_Identity_Core.json",
+      "description": "Machine-readable identity verification file",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "identity",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "AI-Core7-Quantum User Agreement",
+      "file_name": "AI-Core7-Quantum_User_Agreement.docx",
+      "path": "agreements/AI-Core7-Quantum_User_Agreement.docx",
+      "description": "User agreement for AI-Core7-Quantum systems",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "Global",
+      "document_type": "agreement",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "AI-Core7-Quantum User Agreement English",
+      "file_name": "AI-Core7-Quantum_User_Agreement_English.docx",
+      "path": "agreements/AI-Core7-Quantum_User_Agreement_English.docx",
+      "description": "English language version of user agreement",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "Global",
+      "document_type": "agreement",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "CEA Global Allocation Hung Minh Vo UTF8",
+      "file_name": "CEA_Global_Allocation_HungMinhVo_UTF8.pdf",
+      "path": "agreements/CEA_Global_Allocation_HungMinhVo_UTF8.pdf",
+      "description": "Global resource allocation framework with UTF-8 encoding",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "Global",
+      "document_type": "agreement",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    },
+    {
+      "title": "Cyber Operations Security Statement HMV Austin",
+      "file_name": "Cyber_Operations_Security_Statement_HMV_Austin.pdf",
+      "path": "agreements/Cyber_Operations_Security_Statement_HMV_Austin.pdf",
+      "description": "Cybersecurity operations policy statement",
+      "author": "Hung Minh Vo (Austin)",
+      "jurisdiction": "California, United States",
+      "document_type": "agreement",
+      "status": "active",
+      "hash": "pending_generation",
+      "size_bytes": 0
+    }
+  ],
+  "code_files": [
+    {
+      "file_name": "alien_shield.js",
+      "path": "code/alien_shield.js",
+      "description": "JavaScript-based protection and verification layer",
+      "language": "JavaScript",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "w3c-validation-helper.js",
+      "path": "code/w3c-validation-helper.js",
+      "description": "W3C standards validation utilities",
+      "language": "JavaScript",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "crates-license.spec.js",
+      "path": "code/crates-license.spec.js",
+      "description": "License specification and validation for Rust crates",
+      "language": "JavaScript",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "app.js",
+      "path": "code/app.js",
+      "description": "Main application entry point",
+      "language": "JavaScript",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "proto_json.py",
+      "path": "code/proto_json.py",
+      "description": "Protocol buffer and JSON schema utilities",
+      "language": "Python",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "cea_identity.json",
+      "path": "code/cea_identity.json",
+      "description": "CEA identity configuration and metadata",
+      "language": "JSON",
+      "license": "MIT with Sovereign Overlay",
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "cea-defender.zip",
+      "path": "code/cea-defender.zip",
+      "description": "Complete CEA Defender package archive",
+      "language": "Archive",
+      "license": "Sovereign License v3",
+      "hash": "pending_generation"
+    }
+  ],
+  "scripts": [
+    {
+      "file_name": "defensive_ingest.py",
+      "path": "scripts/defensive_ingest.py",
+      "description": "FastAPI-based defensive data ingestion service",
+      "language": "Python",
+      "license": "Apache 2.0 with Attribution",
+      "requires_root": false,
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "apply_blacklist.sh",
+      "path": "scripts/apply_blacklist.sh",
+      "description": "Firewall and ipset blacklist automation",
+      "language": "Bash",
+      "license": "Apache 2.0 with Attribution",
+      "requires_root": true,
+      "hash": "pending_generation"
+    },
+    {
+      "file_name": "README_scripts.md",
+      "path": "scripts/README_scripts.md",
+      "description": "Detailed script documentation and usage guide",
+      "language": "Markdown",
+      "license": "CC-BY-4.0",
+      "requires_root": false,
+      "hash": "pending_generation"
+    }
+  ],
+  "verification": {
+    "hash_algorithm": "SHA256",
+    "signature_method": "Ed25519",
+    "public_key": "pending_generation",
+    "verification_url": "https://github.com/AIC-HMV/Cybersecurity-Defender---Sovereign-Dossier-"
+  }
+}

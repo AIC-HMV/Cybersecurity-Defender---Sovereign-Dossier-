@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Audit Map | CEA Defender</title>
+    
+    <!-- Mapbox GL JS (or use MapLibre GL if no token) -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    
+    <!-- Alternative: MapLibre GL (uncomment if not using Mapbox)
+    <script src='https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css' rel='stylesheet' />
+    -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        #sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: calc(100vh - 40px);
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid #D4AF37;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        #sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #sidebar::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #1a1a1a;
+            border-radius: 6px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .status-dot.connected {
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+        
+        .status-dot.disconnected {
+            background: #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .event {
+            background: #1a1a1a;
+            border-left: 3px solid #D4AF37;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+        
+        .event:hover {
+            background: #252525;
+            transform: translateX(5px);
+        }
+        
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .event-type {
+            font-weight: 600;
+            color: #D4AF37;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        
+        .event-time {
+            font-size: 11px;
+            color: #888;
+        }
+        
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            color: #ccc;
+        }
+        
+        .event-location-icon {
+            color: #D4AF37;
+        }
+        
+        .event-weather {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #0f0f0f;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        
+        .event-weather-temp {
+            font-size: 18px;
+            font-weight: 700;
+            color: #D4AF37;
+        }
+        
+        .event-weather-desc {
+            font-size: 11px;
+            color: #aaa;
+            text-transform: capitalize;
+        }
+        
+        .marker {
+            background-color: #D4AF37;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            animation: markerPulse 2s ease-out infinite;
+        }
+        
+        @keyframes markerPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+            }
+        }
+        
+        .mapboxgl-popup-content {
+            background: rgba(10, 10, 10, 0.95);
+            color: #f0f0f0;
+            border: 2px solid #D4AF37;
+            border-radius: 8px;
+            padding: 15px;
+            max-width: 300px;
+        }
+        
+        .mapboxgl-popup-tip {
+            border-top-color: #D4AF37;
+        }
+        
+        .popup-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #D4AF37;
+            margin-bottom: 8px;
+        }
+        
+        .popup-field {
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #ccc;
+        }
+        
+        .popup-field strong {
+            color: #D4AF37;
+        }
+        
+        #stats {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid #D4AF37;
+            border-radius: 12px;
+            padding: 15px 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .stat-label {
+            color: #aaa;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: #D4AF37;
+        }
+        
+        @media (max-width: 768px) {
+            #sidebar {
+                width: calc(100% - 40px);
+                max-height: 50vh;
+            }
+            
+            #stats {
+                font-size: 11px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div id="stats">
+        <div class="stat-item">
+            <span class="stat-label">Total Events:</span>
+            <span class="stat-value" id="stat-total">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Active Markers:</span>
+            <span class="stat-value" id="stat-markers">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Connected:</span>
+            <span class="stat-value" id="stat-connected">Yes</span>
+        </div>
+    </div>
+    
+    <div id="sidebar">
+        <h1>🛡️ Live Audit Feed</h1>
+        <div class="status">
+            <div class="status-dot connected" id="status-dot"></div>
+            <span id="status-text">Connected to event stream</span>
+        </div>
+        <div id="event-list"></div>
+    </div>
+    
+    <script>
+        // Origin Signature: HMV-SOV-20251003-ALL
+        // Author: Hung Minh Vo (Austin) | AIC-HMV
+        
+        // Configuration - reads from environment
+        const MAPBOX_TOKEN = ''; // Leave blank to auto-detect MapLibre
+        const WS_URL = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.hostname}:8765/ws`;
+        const MARKER_TTL = 5 * 60 * 1000; // 5 minutes
+        const MAX_EVENTS_DISPLAY = 100;
+        
+        // State
+        let map;
+        let ws;
+        let reconnectAttempts = 0;
+        let totalEvents = 0;
+        let markers = new Map();
+        let events = [];
+        
+        // Initialize map with auto-detection
+        function initMap() {
+            // Auto-detect if Mapbox token is available from server
+            fetch('/api/config')
+                .then(r => r.json())
+                .then(config => {
+                    mapboxgl.accessToken = config.mapbox_token || '';
+                    initializeMapWithConfig(config.mapbox_token);
+                })
+                .catch(() => {
+                    // Fallback to MapLibre if config fetch fails
+                    initializeMapWithConfig(null);
+                });
+        }
+        
+        function initializeMapWithConfig(token) {
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: token 
+                    ? 'mapbox://styles/mapbox/dark-v10'
+                    : 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+                center: [0, 30],
+                zoom: 2,
+                pitch: 45,
+                bearing: 0,
+                projection: 'globe'
+            });
+            
+                map.on('load', () => {
+                    map.setFog({
+                        color: 'rgb(186, 210, 235)',
+                        'high-color': 'rgb(36, 92, 223)',
+                        'horizon-blend': 0.02,
+                        'space-color': 'rgb(11, 11, 25)',
+                        'star-intensity': 0.6
+                    });
+                    
+                    // Add 3D terrain if Mapbox token exists
+                    if (token) {
+                        map.addSource('mapbox-dem', {
+                            'type': 'raster-dem',
+                            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                            'tileSize': 512,
+                            'maxzoom': 14
+                        });
+                        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+                    }
+                });
+                
+                // Navigation controls
+                map.addControl(new mapboxgl.NavigationControl());
+            }
+        }
+        
+        // WebSocket connection
+        function connectWebSocket() {
+            ws = new WebSocket(WS_URL);
+            
+            ws.onopen = () => {
+                console.log('✅ WebSocket connected');
+                updateStatus(true);
+                reconnectAttempts = 0;
+            };
+            
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    handleEvent(data);
+                } catch (e) {
+                    console.error('❌ Parse error:', e);
+                }
+            };
+            
+            ws.onerror = (error) => {
+                console.error('❌ WebSocket error:', error);
+                updateStatus(false);
+            };
+            
+            ws.onclose = () => {
+                console.log('❌ WebSocket disconnected');
+                updateStatus(false);
+                
+                // Exponential backoff reconnect
+                const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), 30000);
+                reconnectAttempts++;
+                
+                console.log(`Reconnecting in ${delay/1000}s...`);
+                setTimeout(connectWebSocket, delay);
+            };
+        }
+        
+        // Handle incoming event
+        function handleEvent(event) {
+            totalEvents++;
+            events.unshift(event);
+            
+            // Limit event history
+            if (events.length > MAX_EVENTS_DISPLAY) {
+                events = events.slice(0, MAX_EVENTS_DISPLAY);
+            }
+            
+            // Add marker to map
+            addMarker(event);
+            
+            // Update sidebar
+            updateEventList();
+            
+            // Update stats
+            updateStats();
+        }
+        
+        // Add animated marker to map
+        function addMarker(event) {
+            const el = document.createElement('div');
+            el.className = 'marker';
+            
+            const marker = new mapboxgl.Marker(el)
+                .setLngLat([event.lon, event.lat])
+                .setPopup(createPopup(event))
+                .addTo(map);
+            
+            const markerId = `${event.lat}_${event.lon}_${event.timestamp}`;
+            markers.set(markerId, marker);
+            
+            // Auto-remove after TTL
+            setTimeout(() => {
+                if (markers.has(markerId)) {
+                    marker.remove();
+                    markers.delete(markerId);
+                    updateStats();
+                }
+            }, MARKER_TTL);
+        }
+        
+        // Create popup for marker
+        function createPopup(event) {
+            let html = `
+                <div class="popup-title">${event.event_type}</div>
+                <div class="popup-field"><strong>Location:</strong> ${event.city}, ${event.country}</div>
+                <div class="popup-field"><strong>IP:</strong> ${event.ip}</div>
+                <div class="popup-field"><strong>Actor:</strong> ${event.actor || 'Unknown'}</div>
+                <div class="popup-field"><strong>Time:</strong> ${formatTime(event.timestamp)}</div>
+            `;
+            
+            if (event.weather) {
+                html += `
+                    <div class="popup-field">
+                        <strong>Weather:</strong> ${event.weather.temp}°C, ${event.weather.description}
+                    </div>
+                `;
+            }
+            
+            return new mapboxgl.Popup({ offset: 25 }).setHTML(html);
+        }
+        
+        // Update event list in sidebar
+        function updateEventList() {
+            const listEl = document.getElementById('event-list');
+            listEl.innerHTML = events.map(event => {
+                let weatherHTML = '';
+                if (event.weather) {
+                    weatherHTML = `
+                        <div class="event-weather">
+                            <div class="event-weather-temp">${Math.round(event.weather.temp)}°C</div>
+                            <div class="event-weather-desc">${event.weather.description}</div>
+                        </div>
+                    `;
+                }
+                
+                return `
+                    <div class="event">
+                        <div class="event-header">
+                            <span class="event-type">${event.event_type}</span>
+                            <span class="event-time">${formatTime(event.timestamp)}</span>
+                        </div>
+                        <div class="event-location">
+                            <span class="event-location-icon">📍</span>
+                            <span>${event.city}, ${event.country}</span>
+                        </div>
+                        <div class="event-location">
+                            <span class="event-location-icon">🌐</span>
+                            <span>${event.ip}</span>
+                        </div>
+                        ${weatherHTML}
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Update status indicator
+        function updateStatus(connected) {
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            const statConnected = document.getElementById('stat-connected');
+            
+            if (connected) {
+                dot.className = 'status-dot connected';
+                text.textContent = 'Connected to event stream';
+                statConnected.textContent = 'Yes';
+            } else {
+                dot.className = 'status-dot disconnected';
+                text.textContent = 'Disconnected - reconnecting...';
+                statConnected.textContent = 'No';
+            }
+        }
+        
+        // Update statistics
+        function updateStats() {
+            document.getElementById('stat-total').textContent = totalEvents;
+            document.getElementById('stat-markers').textContent = markers.size;
+        }
+        
+        // Format timestamp
+        function formatTime(timestamp) {
+            if (!timestamp) return 'Unknown';
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return 'Just now';
+            if (diff < 3600000) return `${Math.floor(diff/60000)}m ago`;
+            if (diff < 86400000) return `${Math.floor(diff/3600000)}h ago`;
+            return date.toLocaleDateString();
+        }
+        
+        // Initialize on load
+        window.onload = () => {
+            initMap();
+            connectWebSocket();
+        };
+    </script>
+</body>
+</html>

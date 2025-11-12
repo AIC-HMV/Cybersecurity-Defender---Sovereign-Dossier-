@@ -1,0 +1,56 @@
+name: License Guard
+on:
+  pull_request:
+    paths:
+      - 'LICENSE'
+      - '**/*.ts'
+      - '**/*.js'
+      - '**/*.py'
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Verify License Headers
+        run: |
+          echo "🛡️ Verifying license headers..."
+          
+          failed=0
+          
+          # Check TypeScript/JavaScript files
+          for file in $(find src -name "*.ts" -o -name "*.js"); do
+            if ! grep -q "Origin Signature: Hung Minh Vo" "$file"; then
+              echo "❌ Missing Origin Signature in: $file"
+              failed=1
+            fi
+          done
+          
+          # Check Python files
+          for file in $(find . -name "*.py" -not -path "./.git/*" -not -path "./venv/*"); do
+            if ! grep -q "Origin Signature: Hung Minh Vo" "$file"; then
+              echo "❌ Missing Origin Signature in: $file"
+              failed=1
+            fi
+          done
+          
+          if [ $failed -eq 1 ]; then
+            echo ""
+            echo "❌ License Guard FAILED"
+            echo "All source files must include Origin Signature header."
+            exit 1
+          fi
+          
+          echo "✅ License Guard Passed"
+          echo "All files properly attributed."
+      
+      - name: Verify LICENSE file integrity
+        run: |
+          if ! grep -q "Hung Minh Vo" LICENSE; then
+            echo "❌ LICENSE file has been tampered with"
+            exit 1
+          fi
+          echo "✅ LICENSE file intact"

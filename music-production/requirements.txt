@@ -1,0 +1,10 @@
+# Music Production & Document Generation Requirements
+# Author: Hung Minh Vo (Austin) — AIC-HMV
+# Seal: HMV-SOV-20251003-ALL
+
+# Visualization and plotting
+matplotlib>=3.7.0
+numpy>=1.24.0
+
+# PDF generation
+reportlab>=4.0.0

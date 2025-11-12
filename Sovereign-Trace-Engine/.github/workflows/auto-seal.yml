@@ -1,0 +1,41 @@
+name: Auto Seal
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  seal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Apply Sovereign Seal
+        run: |
+          echo "🛡️ Applying Sovereign Seal..."
+          
+          # Add sovereign seal metadata to commit
+          git config user.name "Sovereign Trace Bot"
+          git config user.email "sovereign@aic-hmv.com"
+          
+          # Create seal file if it doesn't exist
+          if [ ! -f ".sovereign-seal" ]; then
+            echo "SOVEREIGN SEAL: HMV-SOV-20251003-ALL" > .sovereign-seal
+            echo "TIMESTAMP: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> .sovereign-seal
+            echo "COMMIT: $(git rev-parse HEAD)" >> .sovereign-seal
+            echo "AUTHOR: Hung Minh Vo (Austin) | AIC-HMV" >> .sovereign-seal
+            
+            git add .sovereign-seal
+            git commit -m "[AUTO-SEAL] Sovereign seal applied
+
+Sealed by Sovereign Trace Protocol
+HMV-SOV-20251003-ALL
+
+Signed-off-by: Sovereign Trace Bot <sovereign@aic-hmv.com>"
+            
+            git push
+            echo "✅ Sovereign seal applied and committed"
+          else
+            echo "✅ Sovereign seal already exists"
+          fi

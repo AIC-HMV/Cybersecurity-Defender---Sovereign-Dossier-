@@ -1,0 +1,274 @@
+/* 🛡️ Origin Signature: Hung Minh Vo (Austin) | AIC-HMV */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+header {
+  background: #161b22;
+  border-bottom: 2px solid #ffd700;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: #ffd700;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #8b949e;
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+section h2 {
+  color: #ffd700;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 10px;
+}
+
+/* Status Panel */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.status-item {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+
+.status-item.active {
+  border-color: #238636;
+}
+
+.status-icon {
+  font-size: 2em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.status-label {
+  display: block;
+  color: #8b949e;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.status-value {
+  display: block;
+  color: #238636;
+  font-weight: bold;
+}
+
+/* Events Panel */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-item {
+  background: #0d1117;
+  border-left: 4px solid;
+  padding: 15px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 180px 100px 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.event-item.low {
+  border-color: #8b949e;
+}
+
+.event-item.medium {
+  border-color: #d29922;
+}
+
+.event-item.high {
+  border-color: #f85149;
+}
+
+.event-time {
+  color: #8b949e;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.event-severity {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.event-item.low .event-severity {
+  background: #8b949e;
+  color: #0d1117;
+}
+
+.event-item.medium .event-severity {
+  background: #d29922;
+  color: #0d1117;
+}
+
+.event-item.high .event-severity {
+  background: #f85149;
+  color: #ffffff;
+}
+
+/* Financial Panel */
+.financial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.financial-item {
+  background: #0d1117;
+  border-left: 4px solid;
+  padding: 15px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 180px 100px 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.financial-item.trace {
+  border-color: #58a6ff;
+}
+
+.financial-item.freeze {
+  border-color: #d29922;
+}
+
+.financial-item.lawsuit {
+  border-color: #f85149;
+}
+
+.financial-time {
+  color: #8b949e;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.financial-severity {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.85em;
+}
+
+.financial-item.trace .financial-severity {
+  background: #58a6ff;
+  color: #0d1117;
+}
+
+.financial-item.freeze .financial-severity {
+  background: #d29922;
+  color: #0d1117;
+}
+
+.financial-item.lawsuit .financial-severity {
+  background: #f85149;
+  color: #ffffff;
+}
+
+.financial-details {
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Stats Panel */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  display: block;
+  color: #8b949e;
+  font-size: 0.9em;
+}
+
+/* Footer */
+footer {
+  background: #161b22;
+  border-top: 2px solid #ffd700;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 5px 0;
+  color: #8b949e;
+}
+
+footer strong {
+  color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .event-item,
+  .financial-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .status-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
