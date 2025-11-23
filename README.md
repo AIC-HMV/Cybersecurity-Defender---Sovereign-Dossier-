@@ -18,3 +18,5 @@ CEA Defender is a compact, auditable enforcement capsule designed to assert auth
 ---
 
 ## 📂 Repository Layout
+
+_This section will be populated in future commits._
