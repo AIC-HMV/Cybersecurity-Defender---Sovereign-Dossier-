@@ -4,13 +4,13 @@ High-stakes AI security system with military-grade protection, adaptive threat d
 
 Core identity line:
 
-E8-CIA-AMV // Sovereign Active // No Location // All Systems Auto-Live at Maximum
+The core identity line is a compact descriptor of this system’s security posture. It encodes its classification, operating state, automation level, and location policy in one line for use in headers, dashboards, and security documentation.
 
+E8-CIA-AMV // Sovereign Active // No Location // All Systems Auto-Live at Maximum
 
 If you want a shorter, punchier variant for tight spaces:
 
 E8-CIA-AMV // Sovereign Active // Auto-Max Systems // No Location
-
 
 And a protocol-style version for headers/memos:
 
@@ -18,3 +18,13 @@ IDENT: E8-CIA-AMV
 STATE: Sovereign Active
 MODE: All Auto Systems Living at Maximum Capacity
 LOCATION: Withheld by Design
+
+### Terminology reference
+
+- **IDENT: `E8-CIA-AMV`** – Internal classification code for this deployment profile.  
+  - `E8` – Environment/tier indicator for high-criticality infrastructure (e.g., critical national or enterprise assets).  
+  - `CIA` – Emphasis on **C**onfidentiality, **I**ntegrity, and **A**vailability as primary security objectives.  
+  - `AMV` – Active, monitored, versioned build of the system (auto-updated with verified security policies).
+- **STATE: `Sovereign Active`** – The system is running in a hardened, defensive posture, enforcing sovereign (owner-controlled) policies rather than shared/multi-tenant defaults.
+- **MODE: `All Systems Auto-Live at Maximum` / `Auto-Max Systems`** – All defensive subsystems (detection, response, logging, and policy enforcement) are enabled, running in fully automated mode, and tuned to maximum protection rather than performance or cost optimization.
+- **LOCATION: `No Location` / `Withheld by Design`** – Deployment location and topology are intentionally not disclosed in public or external-facing documentation. This reflects an **operational security (OPSEC) policy**, not an absence of deployment.
