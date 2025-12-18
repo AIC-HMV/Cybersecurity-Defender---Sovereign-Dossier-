@@ -7,12 +7,12 @@ Core identity line:
 The core identity line is a compact descriptor of this system’s security posture. It encodes its classification, operating state, automation level, and location policy in one line for use in headers, dashboards, and security documentation.
 
 E8-CIA-AMV // Sovereign Active // No Location // All Systems Auto-Live at Maximum
-
-If you want a shorter, punchier variant for tight spaces:
+Short form for use in space-constrained contexts:
 
 E8-CIA-AMV // Sovereign Active // Auto-Max Systems // No Location
 
-And a protocol-style version for headers/memos:
+
+Protocol-style variant for use in headers and memos:
 
 IDENT: E8-CIA-AMV
 STATE: Sovereign Active
